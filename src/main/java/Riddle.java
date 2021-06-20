@@ -30,7 +30,7 @@ public class Riddle {
 
     private String question;
 
-    @OneToMany(mappedBy = "parent", fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
+    @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
     private List<KeyWord> children;
 
 }
