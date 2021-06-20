@@ -28,6 +28,8 @@ public class Riddle {
     @Column(name = "uuid")
     private String uuid;
 
+    private String question;
+
     @OneToMany(mappedBy = "parent", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<KeyWord> children;
 

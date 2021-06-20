@@ -24,6 +24,8 @@ public class KeyWord {
   @Column(name = "uuid")
   private String uuid;
 
+  private Long id;
+
   @ManyToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "parent", referencedColumnName = "uuid")
   private Riddle parent;
