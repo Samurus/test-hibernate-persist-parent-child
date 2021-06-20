@@ -1,5 +1,3 @@
-package org.hibernate.test;
-
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -20,9 +18,9 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "node")
-@ToString(exclude = {"parent"})
+@ToString(exclude = {"children", "parent"})
 @EqualsAndHashCode(of = {"uuid"})
-public class Node {
+public class Riddle {
 
     @Id
     @GeneratedValue(generator = "uuid")
@@ -30,11 +28,7 @@ public class Node {
     @Column(name = "uuid")
     private String uuid;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "parent", referencedColumnName = "uuid")
-    private Node parent;
-
     @OneToMany(mappedBy = "parent", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<Node> children;
+    private List<KeyWord> children;
 
 }

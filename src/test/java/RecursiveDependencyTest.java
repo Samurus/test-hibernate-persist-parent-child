@@ -1,5 +1,4 @@
-package org.hibernate.test;
-
+import com.google.inject.Key;
 import com.google.inject.persist.Transactional;
 import org.jukito.JukitoRunner;
 import org.jukito.UseModules;
@@ -23,11 +22,12 @@ public class RecursiveDependencyTest {
     @Test
     @Transactional
     public void testBiDirectionalPersistenceWithUUIDGenerator() throws Exception {
-        Node parent = new Node();
-        Node child = new Node();
+        Riddle parent = new Riddle();
+        KeyWord child = new KeyWord();
 
         // Add child to parents children
-        List<Node> parentsChildren = new ArrayList<>();
+        List<KeyWord> parentsChildren = new ArrayList<>();
+        parentsChildren.add(child);
         parentsChildren.add(child);
         parent.setChildren(parentsChildren);
         // Set back reference as well
@@ -35,7 +35,7 @@ public class RecursiveDependencyTest {
 
         entityManager.persist(parent);
 
-        assertThat(parent.getChildren(), iterableWithSize(1));
+        assertThat(parent.getChildren(), iterableWithSize(2));
     }
 
 }
